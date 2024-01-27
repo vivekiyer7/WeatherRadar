@@ -1,0 +1,16 @@
+.weather-header h1 {
+    font-size: 2.5rem; /* You can adjust the font size as needed */
+    margin: 0; /* Remove default margin */
+    background-color: dodgerblue;
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Additional styles for responsiveness, adjust as needed */
+  @media (max-width: 767px) {
+    .weather-header h1 {
+      font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+  }
+  
