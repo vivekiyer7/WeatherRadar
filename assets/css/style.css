@@ -13,3 +13,25 @@
     }
   }
   
+  /* Add Border to Today Section */
+  #today {
+    border: 1px solid #090909;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  #today h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #today p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: larger;
+  }
