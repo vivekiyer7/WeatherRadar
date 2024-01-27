@@ -6,9 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link
-      rel="stylesheet"
       href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+      rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Weather Radar</title>
   </head>
 
@@ -25,31 +34,27 @@
             Search for a City:
           </h2>
           <form id="search-form" class="form">
-            <div class="form-inline form-group">
-              <div class="input-group">
-                <div class="input-group-append">
-                  <div class="ui-widget">
-                    <p>
-                      <input
-                        id="tags"
-                        title="Autocomplete is Enabled. Enter City Name"
-                      />
-                    </p>
-                  </div>
-                  <button
-                    type="submit"
-                    class="btn search-button"
-                    id="search-button"
-                    aria-label="submit search"
-                  >
-                    Search
-                  </button>
-                  <hr class="hr weather-hr" />
-                </div>
-              </div>
+            <div class="ui-widget">
+              <p>
+                <input id="tags" />
+              </p>
             </div>
+            <div class="d-grid gap-2">
+              <button
+                class="btn btn-primary search-button"
+                type="submit"
+                id="search-button"
+                aria-label="submit search"
+              >
+                Search
+              </button>
+            </div>
+            <hr class="hr weather-hr" />
           </form>
-          <div class="list-group" id="history"></div>
+          <div class="list-group" id="history">
+            <div class="d-grid gap-2">
+            </div>
+          </div>
         </aside>
 
         <div class="col-lg-9 pb-3">
@@ -69,6 +74,8 @@
       </div>
     </div>
 
+    <!---jquery of day.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="./assets/js/cites.js"></script>

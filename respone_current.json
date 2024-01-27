@@ -1,0 +1,43 @@
+{
+    "coord": {
+        "lon": -4.0017,
+        "lat": 5.3544
+    },
+    "weather": [
+        {
+            "id": 801,
+            "main": "Clouds",
+            "description": "few clouds",
+            "icon": "02n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 299.87,
+        "feels_like": 301.83,
+        "temp_min": 299.87,
+        "temp_max": 299.87,
+        "pressure": 1012,
+        "humidity": 74
+    },
+    "visibility": 7000,
+    "wind": {
+        "speed": 1.54,
+        "deg": 240
+    },
+    "clouds": {
+        "all": 21
+    },
+    "dt": 1706392525,
+    "sys": {
+        "type": 1,
+        "id": 1162,
+        "country": "CI",
+        "sunrise": 1706337132,
+        "sunset": 1706379887
+    },
+    "timezone": 0,
+    "id": 8031572,
+    "name": "Les deux-Plateaux",
+    "cod": 200
+}
