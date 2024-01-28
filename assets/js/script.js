@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  //When page loads keep the search box empty
-  $("#tags").val("");
 
   //Load the City as Autocomplete in the Search Box
   $(function () {
@@ -30,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       }
     }
-
     gettodayweatherdetails(lat, lon, cityname);
     getfutureweatherdetails(lat, lon, cityname);
   }
