@@ -378,7 +378,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       if(cityfound){
         storecitysearchlist(city);
-        getcitydetails(city);
+        //reload the whole page
+        location.reload();
+        //This is getting called in Page Reload. getcitydetails(city);
       }else{
         //If the city name is invalid then show Pop message as "City not found"
         $("#tags").val("");
