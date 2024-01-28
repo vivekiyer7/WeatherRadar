@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#tags").autocomplete({
       source: cityname,
     });
+
+    //Load the default city as London
+    getcitydetails("London");
   });
 
   function getcitydetails(cityname) {
@@ -21,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var lat = 0;
     var lon = 0;
     for (let i = 0; i < cities_list.length; i++) {
-      if (cities_list[i].name == cityname) {
+      if (cities_list[i].name.toLocaleLowerCase() == cityname.toLocaleLowerCase()) {
         lat = cities_list[i].lat;
         lon = cities_list[i].lon;
         break;
@@ -121,8 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // We store all of the retrieved data inside of an object called "data"
       .then(function (data) {
         console.log(data);
-        //Retrieve the weather details of the city
-        //Parse the data to get the weather details for the next 5 days and store in Array
         // while matching the date in format 00:00:00. If that matches, store the weather details in the Array
         //Calculate the date of the next 5 days and store in Array. Use days.js to calculate the date
         futuredates = [];
@@ -168,6 +169,13 @@ document.addEventListener("DOMContentLoaded", function () {
         var thirdfuturedayEl = $("#thirdfutureday");
         var fourthfuturedayEl = $("#fourthfutureday");
         var fifthfuturedayEl = $("#fifthfutureday");
+
+        firstfuturedayEl.empty();
+        secondfuturedayEl.empty();
+        thirdfuturedayEl.empty();
+        fourthfuturedayEl.empty();
+        fifthfuturedayEl.empty();
+
 
         //Now create and display inside each futureday container the weather details
         //First Day
@@ -315,8 +323,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var city = $("#tags").val();
     //Check if the city name is empty
     if (city == "") {
-      //If empty show error message
-      $("#error").html("Please enter a city name");
+      //If empty show Pop message as "Please enter a city name"
+      $("#tags").val("");
+      alert("Please enter a city name");
     } else {
       getcitydetails(city);
     }
