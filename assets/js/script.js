@@ -15,7 +15,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Load the default city as London
     getcitydetails("London");
+
+    //Call the function to load the city search list
+    loadcitysearchlist();
   });
+
+  function loadcitysearchlist() {
+    // Retrieve the existing city list from local storage
+    var citylocallist = JSON.parse(localStorage.getItem("citysearchlist")) || [];
+
+    var citysearchbuttonEl = $("#cityhistory");      
+    citysearchbuttonEl.empty();
+
+    //Check if the city list is empty
+    if (citylocallist.length > 0) {
+      //If not empty then load the city list in the search history
+      for (let i = 0; i < citylocallist.length; i++) {
+        //Create a button element in id history in HTML
+        var citysearchbuttonEl = $("<button>");
+        citysearchbuttonEl.attr("type", "button");
+        citysearchbuttonEl.attr("class", "btn btn-secondary btn-lg btn-block");
+        citysearchbuttonEl.text(citylocallist[i]);
+        $("#cityhistory").append(citysearchbuttonEl);
+      }
+    }
+  }
 
   function getcitydetails(cityname) {
     //Get the lat and lon of the city
@@ -323,10 +347,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Save the updated list to local storage
       localStorage.setItem("citysearchlist", JSON.stringify(citylocallist));
     }
-    // else: The city is already in the list; no need to update storage
   }
   
-
   //When the user clicks the search button or presses enter search for the city
   $("#search-button").click(function (event) {
     event.preventDefault();
@@ -356,4 +378,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+
+
 });
