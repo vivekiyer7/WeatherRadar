@@ -1,0 +1,108 @@
+.weather-header h1 {
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;    
+    background-image: linear-gradient(to right, #0080ff, #2d0289);
+  }
+  
+  /* Additional styles for responsiveness, adjust as needed */
+  @media (max-width: 767px) {
+    .weather-header h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* Today Section */
+  #today {
+    border: 1px solid #090909;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  #today h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #today p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: larger;
+  }
+
+  /* Forcast Section */
+  #forecast {
+    border: 1px solid #090909;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+
+
+  /* Footer Section */
+  #footer {
+    border: 1px solid #090909;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  #footer h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #footer p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: larger;
+  }
+  
+  .col-sm {
+    border: 1px solid #090909;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right:1rem;
+    margin-bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color : floralwhite;
+    background-color: darkslategray;
+  }
+
+  .col-sm h5 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+
+/* Footer styles */
+.footer {
+  padding: 30px;
+  clear: both;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.footer h2 {
+  font-size: 20px;
+}
+
+.separator {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+}
