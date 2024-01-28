@@ -327,7 +327,22 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#tags").val("");
       alert("Please enter a city name");
     } else {
-      getcitydetails(city);
+      //Check if the city name is valid
+      var cityfound = false;
+      for (let i = 0; i < cities_list.length; i++) {
+        if (cities_list[i].name.toLocaleLowerCase() == city.toLocaleLowerCase()) {
+          cityfound = true;
+          break;
+        }
+      }
+      if(cityfound){
+        //If the city name is valid then get the city details
+        getcitydetails(city);
+      }else{
+        //If the city name is invalid then show Pop message as "City not found"
+        $("#tags").val("");
+        alert("City not found");
+      }
     }
   });
 });
