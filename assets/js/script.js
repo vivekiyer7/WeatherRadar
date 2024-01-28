@@ -13,8 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
       source: cityname,
     });
 
-    //Load the default city as London
-    getcitydetails("London");
+    //Load the weather details of last searched city
+    var citylocallist = JSON.parse(localStorage.getItem("citysearchlist")) || [];
+    //Check if the city list is empty
+    if (citylocallist.length > 0) {
+      //If not empty then load the weather details of the last searched city
+      getcitydetails(citylocallist[citylocallist.length - 1]);
+    } else {
+      //If empty then load the weather details of London
+      getcitydetails("London");
+    }
 
     //Call the function to load the city search list
     loadcitysearchlist();
@@ -29,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Check if the city list is empty
     if (citylocallist.length > 0) {
-      //If not empty then load the city list in the search history
-      for (let i = 0; i < citylocallist.length; i++) {
+      //If not empty then load the city list in the search history in reverse order
+      for (let i = citylocallist.length - 1; i >= 0; i--) {
         //Create a button element in id history in HTML
         var citysearchbuttonEl = $("<button>");
         citysearchbuttonEl.attr("type", "button");
@@ -377,6 +385,15 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("City not found");
       }
     }
+  });
+
+  //When the user clicks the search history button, search for the city
+  $("#cityhistory").click(function (event) {
+    event.preventDefault();
+    //Get the city name from the search history button
+    var city = event.target.textContent;
+    console.log(city);
+    getcitydetails(city);
   });
 
 
