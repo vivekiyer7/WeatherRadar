@@ -13,7 +13,7 @@
     }
   }
   
-  /* Add Border to Today Section */
+  /* Today Section */
   #today {
     border: 1px solid #090909;
     border-radius: 5px;
@@ -35,3 +35,56 @@
     margin-bottom: 0;
     font-size: larger;
   }
+
+  /* Forcast Section */
+  #forecast {
+    border: 1px solid #090909;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+
+
+  /* Footer Section */
+  #footer {
+    border: 1px solid #090909;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  #footer h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #footer p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: larger;
+  }
+  
+  .col-sm {
+    border: 1px solid #090909;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right:1rem;
+    margin-bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
+
+  .col-sm h5 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  /* Path: WeatherRadar/assets/css/style.css */

@@ -86,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
   ) {
     //Display by creating the elements dynamically inside the div in the html in today class
 
-    var todayListEl = $("#todaylist");
     var citynameEl = $("#citydisplayname");
     var todaydateEl = $("#todaydisplaydate");
     var iconurlEl = $("#iconurldisplay");
@@ -123,7 +122,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (data) {
         console.log(data);
         //Retrieve the weather details of the city
-
+        //Parse the data to get the weather details for the next 5 days and store in Array
+        // while matching the date in format 00:00:00. If that matches, store the weather details in the Array
         //Calculate the date of the next 5 days and store in Array. Use days.js to calculate the date
         futuredates = [];
         futureicourl = [];
@@ -132,8 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
         futurewindspeed = [];
         var temp_date = "";
 
-        //Parse the data to get the weather details for the next 5 days and store in Array
-        // while matching the date in format 00:00:00. If that matches, store the weather details in the Array
         for (let j = 0; j < data.list.length; j++) {
           if (data.list[j].dt_txt.includes("00:00:00")) {
             temp_date = data.list[j].dt_txt
@@ -160,6 +158,153 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log(futurehumidity[k]);
           console.log(futurewindspeed[k]);
         }
+
+        //Display the weather details for the next 5 days here by creating the elements dynamically inside the div in the html in future class
+        var ForcastheadingEl = $("#forcastheading");
+        ForcastheadingEl.text("5-Day Forcast");
+
+        var firstfuturedayEl = $("#firstfutureday");
+        var secondfuturedayEl = $("#secondfutureday");
+        var thirdfuturedayEl = $("#thirdfutureday");
+        var fourthfuturedayEl = $("#fourthfutureday");
+        var fifthfuturedayEl = $("#fifthfutureday");
+
+        //Now create and display inside each futureday container the weather details
+        //First Day
+
+        //create a header element and append to the firstfuturedayEl
+        var futuredayheaderEl = $("<h5>");
+        futuredayheaderEl.text(futuredates[0]);
+
+        //create an image element and append to the firstfuturedayEl
+        var futuredayiconurlEl = $("<img>");
+        futuredayiconurlEl.attr("src", futureicourl[0]);
+
+        //create a paragraph element and append to the firstfuturedayEl
+        var futuredaytempEl = $("<p>");
+        futuredaytempEl.text("Temp: " + futuretemp[0] + " °C");
+
+        //create a paragraph element and append to the firstfuturedayEl
+        var futuredaywindspeedEl = $("<p>");
+        futuredaywindspeedEl.text("Wind : " + futurewindspeed[0] + " KPH");
+
+        //create a paragraph element and append to the firstfuturedayEl
+        var firstfuturedayhumidityEl = $("<p>");
+        firstfuturedayhumidityEl.text("Humidity: " + futurehumidity[0] + "%");
+
+        firstfuturedayEl.append(futuredayheaderEl);
+        firstfuturedayEl.append(futuredayiconurlEl);
+        firstfuturedayEl.append(futuredaytempEl);
+        firstfuturedayEl.append(futuredaywindspeedEl);
+        firstfuturedayEl.append(firstfuturedayhumidityEl);
+
+        //Second Day
+        //create a header element and append to the secondfuturedayEl
+        var futuredayheaderEl = $("<h5>");
+        futuredayheaderEl.text(futuredates[1]);
+
+        //create an image element and append to the secondfuturedayEl
+        var futuredayiconurlEl = $("<img>");
+        futuredayiconurlEl.attr("src", futureicourl[1]);
+
+        //create a paragraph element and append to the secondfuturedayEl
+        var futuredaytempEl = $("<p>");
+        futuredaytempEl.text("Temp: " + futuretemp[1] + " °C");
+
+        //create a paragraph element and append to the secondfuturedayEl
+        var futuredaywindspeedEl = $("<p>");
+        futuredaywindspeedEl.text("Wind : " + futurewindspeed[1] + " KPH");
+
+        //create a paragraph element and append to the secondfuturedayEl
+        var secondfuturedayhumidityEl = $("<p>");
+        secondfuturedayhumidityEl.text("Humidity: " + futurehumidity[1] + "%");
+
+        secondfuturedayEl.append(futuredayheaderEl);
+        secondfuturedayEl.append(futuredayiconurlEl);
+        secondfuturedayEl.append(futuredaytempEl);
+        secondfuturedayEl.append(futuredaywindspeedEl);
+        secondfuturedayEl.append(secondfuturedayhumidityEl);
+
+        //Third Day
+        //create a header element and append to the thirdfuturedayEl
+        var futuredayheaderEl = $("<h5>");
+        futuredayheaderEl.text(futuredates[2]);
+
+        //create an image element and append to the thirdfuturedayEl
+        var futuredayiconurlEl = $("<img>");
+        futuredayiconurlEl.attr("src", futureicourl[2]);
+
+        //create a paragraph element and append to the thirdfuturedayEl
+        var futuredaytempEl = $("<p>");
+        futuredaytempEl.text("Temp: " + futuretemp[2] + " °C");
+
+        //create a paragraph element and append to the thirdfuturedayEl
+        var futuredaywindspeedEl = $("<p>");
+        futuredaywindspeedEl.text("Wind : " + futurewindspeed[2] + " KPH");
+
+        //create a paragraph element and append to the thirdfuturedayEl
+        var thirdfuturedayhumidityEl = $("<p>");
+        thirdfuturedayhumidityEl.text("Humidity: " + futurehumidity[2] + "%");
+
+        thirdfuturedayEl.append(futuredayheaderEl);
+        thirdfuturedayEl.append(futuredayiconurlEl);
+        thirdfuturedayEl.append(futuredaytempEl);
+        thirdfuturedayEl.append(futuredaywindspeedEl);
+        thirdfuturedayEl.append(thirdfuturedayhumidityEl);
+
+        //Fourth Day
+        //create a header element and append to the fourthfuturedayEl
+        var futuredayheaderEl = $("<h5>");
+        futuredayheaderEl.text(futuredates[3]);
+
+        //create an image element and append to the fourthfuturedayEl
+        var futuredayiconurlEl = $("<img>");
+        futuredayiconurlEl.attr("src", futureicourl[3]);
+
+        //create a paragraph element and append to the fourthfuturedayEl
+        var futuredaytempEl = $("<p>");
+        futuredaytempEl.text("Temp: " + futuretemp[3] + " °C");
+
+        //create a paragraph element and append to the fourthfuturedayEl
+        var futuredaywindspeedEl = $("<p>");
+        futuredaywindspeedEl.text("Wind : " + futurewindspeed[3] + " KPH");
+
+        //create a paragraph element and append to the fourthfuturedayEl
+        var fourthfuturedayhumidityEl = $("<p>");
+        fourthfuturedayhumidityEl.text("Humidity: " + futurehumidity[3] + "%");
+
+        fourthfuturedayEl.append(futuredayheaderEl);
+        fourthfuturedayEl.append(futuredayiconurlEl);
+        fourthfuturedayEl.append(futuredaytempEl);
+        fourthfuturedayEl.append(futuredaywindspeedEl);
+        fourthfuturedayEl.append(fourthfuturedayhumidityEl);
+
+        //Fifth Day
+        //create a header element and append to the fifthfuturedayEl
+        var futuredayheaderEl = $("<h5>");
+        futuredayheaderEl.text(futuredates[4]);
+
+        //create an image element and append to the fifthfuturedayEl
+        var futuredayiconurlEl = $("<img>");
+        futuredayiconurlEl.attr("src", futureicourl[4]);
+
+        //create a paragraph element and append to the fifthfuturedayEl
+        var futuredaytempEl = $("<p>");
+        futuredaytempEl.text("Temp: " + futuretemp[4] + " °C");
+
+        //create a paragraph element and append to the fifthfuturedayEl
+        var futuredaywindspeedEl = $("<p>");
+        futuredaywindspeedEl.text("Wind : " + futurewindspeed[4] + " KPH");
+
+        //create a paragraph element and append to the fifthfuturedayEl
+        var fifthfuturedayhumidityEl = $("<p>");
+        fifthfuturedayhumidityEl.text("Humidity: " + futurehumidity[4] + "%");
+
+        fifthfuturedayEl.append(futuredayheaderEl);
+        fifthfuturedayEl.append(futuredayiconurlEl);
+        fifthfuturedayEl.append(futuredaytempEl);
+        fifthfuturedayEl.append(futuredaywindspeedEl);
+        fifthfuturedayEl.append(fifthfuturedayhumidityEl);
       });
   }
 
