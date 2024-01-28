@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       // We store all of the retrieved data inside of an object called "data"
       .then(function (data) {
-        console.log(data);
         //Retrieve the weather details of the city
         //Get today's date using days.js in the format DD/MM/YYYY
         var todaydate = dayjs().format("DD/MM/YYYY");
@@ -111,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
       lon +
       "&appid=" +
       apikey;
-    console.log(queryURL);
     // Here we run our Fetch call to the OpenWeatherMap API
     fetch(queryURL)
       .then(function (response) {
@@ -120,7 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       // We store all of the retrieved data inside of an object called "data"
       .then(function (data) {
-        console.log(data);
         // while matching the date in format 00:00:00. If that matches, store the weather details in the Array
         //Calculate the date of the next 5 days and store in Array. Use days.js to calculate the date
         futuredates = [];
@@ -147,14 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
             futurehumidity.push(data.list[j].main.humidity);
             futurewindspeed.push((data.list[j].wind.speed * 3.6).toFixed(2));
           }
-        }
-
-        for (let k = 0; k < futuredates.length; k++) {
-          console.log(futuredates[k]);
-          console.log(futureicourl[k]);
-          console.log(futuretemp[k]);
-          console.log(futurehumidity[k]);
-          console.log(futurewindspeed[k]);
         }
 
         //Display the weather details for the next 5 days here by creating the elements dynamically inside the div in the html in future class
@@ -313,6 +302,31 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
+  function storecitysearchlist(cityname) {
+    // Retrieve the existing city list from local storage
+    var citylocallist = JSON.parse(localStorage.getItem("citysearchlist")) || [];
+  
+    // Check if the list already contains the city
+    var index = citylocallist.indexOf(cityname);
+  
+    // If the city is not in the list, add it
+    if (index === -1) {
+      // Check if the list has reached its maximum size (6 cities)
+      if (citylocallist.length < 6) {
+        // Add the city to the end of the list
+        citylocallist.push(cityname);
+      } else {
+        // Remove the oldest city (first element) and add the new city
+        citylocallist.shift();
+        citylocallist.push(cityname);
+      }
+      // Save the updated list to local storage
+      localStorage.setItem("citysearchlist", JSON.stringify(citylocallist));
+    }
+    // else: The city is already in the list; no need to update storage
+  }
+  
+
   //When the user clicks the search button or presses enter search for the city
   $("#search-button").click(function (event) {
     event.preventDefault();
@@ -333,7 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
       if(cityfound){
-        //If the city name is valid then get the city details
+        storecitysearchlist(city);
         getcitydetails(city);
       }else{
         //If the city name is invalid then show Pop message as "City not found"
