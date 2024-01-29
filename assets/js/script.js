@@ -66,11 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       }
     }
-    gettodayweatherdetails(lat, lon, cityname);
-    getfutureweatherdetails(lat, lon, cityname);
+    gettodayweatherdetails(lat, lon, countrycityname);
+    getfutureweatherdetails(lat, lon);
   }
 
-  function gettodayweatherdetails(lat, lon, cityname) {
+  function gettodayweatherdetails(lat, lon, countrycityname) {
     //Get the weather details of the city
     var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?lat=" +
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
           humidity,
           windspeed_KPH,
           iconurl,
-          cityname
+          countrycityname
         );
       });
   }
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     humidity,
     windspeed_KPH,
     iconurl,
-    cityname
+    countrycityname
   ) {
     //Display by creating the elements dynamically inside the div in the html in today class
 
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var humidityEl = $("#todayhumiditydisplay");
     var windspeed_KPHEl = $("#todaywindspeedisplay");
 
-    citynameEl.text(cityname);
+    citynameEl.text(countrycityname);
     todaydateEl.text("(" + todaydate + ")");
     iconurlEl.attr("src", iconurl);
     temp_celsiusEl.text("Temp: " + temp_celsius + " °C");
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
     windspeed_KPHEl.text("Wind Speed: " + windspeed_KPH + " KPH");
   }
 
-  function getfutureweatherdetails(lat, lon, cityname) {
+  function getfutureweatherdetails(lat, lon) {
     //Get the weather details of the city
     var queryURL =
       "https://api.openweathermap.org/data/2.5/forecast?lat=" +
