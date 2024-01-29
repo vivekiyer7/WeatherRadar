@@ -106,3 +106,33 @@
   border: 1px solid #ccc;
   margin: 10px 0;
 }
+
+/* Hide*/
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+/* Format ui autocomplete*/
+.ui-autocomplete {
+  background-color: #ffffff;
+  border: 1.5px solid #a5a4a4; 
+  max-height: 250px; 
+  overflow-y: auto; 
+  max-width: 325px;
+}
+
+.ui-autocomplete li {
+  list-style: none;
+  padding: 8px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+.ui-autocomplete li:hover {
+  background-color: #f1d191; 
+}
+
+.ui-menu-item {
+  color: #333;
+}

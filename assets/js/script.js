@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+  var apikey = "f41ac7fc5765325b802d2654709a4c22";
+
   //Load the City as Autocomplete in the Search Box
   $(function () {
     //Get the list of cities from the cities.json file
     var cityname = [];
     for (let j = 0; j < cities_list.length; j++) {
       //append the city names to the cityname variable
-      cityname.push(cities_list[j].name);
+      cityname.push(cities_list[j].name + ", " + cities_list[j].country);
     }
+    console.log(cityname);
     //Add the autocomplete feature to the search box
     $("#tags").autocomplete({
       source: cityname,
@@ -21,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
       getcitydetails(citylocallist[citylocallist.length - 1]);
     } else {
       //If empty then load the weather details of London
-      getcitydetails("London");
+      getcitydetails("London,GB");
     }
 
     //Call the function to load the city search list
@@ -30,31 +33,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadcitysearchlist() {
     // Retrieve the existing city list from local storage
-    var citylocallist = JSON.parse(localStorage.getItem("citysearchlist")) || [];
+    var countrycitylocallist = JSON.parse(localStorage.getItem("citysearchlist")) || [];
 
     var citysearchbuttonEl = $("#cityhistory");      
     citysearchbuttonEl.empty();
 
     //Check if the city list is empty
-    if (citylocallist.length > 0) {
+    if (countrycitylocallist.length > 0) {
       //If not empty then load the city list in the search history in reverse order
-      for (let i = citylocallist.length - 1; i >= 0; i--) {
+      for (let i = countrycitylocallist.length - 1; i >= 0; i--) {
         //Create a button element in id history in HTML
         var citysearchbuttonEl = $("<button>");
         citysearchbuttonEl.attr("type", "button");
         citysearchbuttonEl.attr("class", "btn btn-secondary btn-lg btn-block");
-        citysearchbuttonEl.text(citylocallist[i]);
+        citysearchbuttonEl.text(countrycitylocallist[i]);
         $("#cityhistory").append(citysearchbuttonEl);
       }
     }
   }
 
-  function getcitydetails(cityname) {
+  function getcitydetails(countrycityname) {
     //Get the lat and lon of the city
     var lat = 0;
     var lon = 0;
+    var cityname = countrycityname.split(",")[0].trim();
+    var country_name = countrycityname.split(",")[1].trim();
+
     for (let i = 0; i < cities_list.length; i++) {
-      if (cities_list[i].name.toLocaleLowerCase() == cityname.toLocaleLowerCase()) {
+      if ((cities_list[i].name.toLocaleLowerCase() == cityname.toLocaleLowerCase()) && cities_list[i].country.toLocaleLowerCase() == country_name.toLocaleLowerCase()) {
         lat = cities_list[i].lat;
         lon = cities_list[i].lon;
         break;
@@ -66,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function gettodayweatherdetails(lat, lon, cityname) {
     //Get the weather details of the city
-    var apikey = "f41ac7fc5765325b802d2654709a4c22";
     var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?lat=" +
       lat +
@@ -134,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function getfutureweatherdetails(lat, lon, cityname) {
     //Get the weather details of the city
-    var apikey = "f41ac7fc5765325b802d2654709a4c22";
     var queryURL =
       "https://api.openweathermap.org/data/2.5/forecast?lat=" +
       lat +
@@ -334,23 +338,23 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function storecitysearchlist(cityname) {
+  function storecitysearchlist(countrycityname) {
     // Retrieve the existing city list from local storage
     var citylocallist = JSON.parse(localStorage.getItem("citysearchlist")) || [];
   
     // Check if the list already contains the city
-    var index = citylocallist.indexOf(cityname);
+    var index = citylocallist.indexOf(countrycityname);
   
     // If the city is not in the list, add it
     if (index === -1) {
       // Check if the list has reached its maximum size (6 cities)
       if (citylocallist.length < 6) {
         // Add the city to the end of the list
-        citylocallist.push(cityname);
+        citylocallist.push(countrycityname);
       } else {
         // Remove the oldest city (first element) and add the new city
         citylocallist.shift();
-        citylocallist.push(cityname);
+        citylocallist.push(countrycityname);
       }
       // Save the updated list to local storage
       localStorage.setItem("citysearchlist", JSON.stringify(citylocallist));
@@ -360,8 +364,10 @@ document.addEventListener("DOMContentLoaded", function () {
   //When the user clicks the search button or presses enter search for the city
   $("#search-button").click(function (event) {
     event.preventDefault();
-    //Get the city name from the search box
-    var city = $("#tags").val();
+    //Get the city name and country from the search box
+    var countrycity = $("#tags").val();
+    var city = countrycity.split(",")[0].trim();
+    var country_name = countrycity.split(",")[1].trim();
     //Check if the city name is empty
     if (city == "") {
       //If empty show Pop message as "Please enter a city name"
@@ -371,13 +377,13 @@ document.addEventListener("DOMContentLoaded", function () {
       //Check if the city name is valid
       var cityfound = false;
       for (let i = 0; i < cities_list.length; i++) {
-        if (cities_list[i].name.toLocaleLowerCase() == city.toLocaleLowerCase()) {
+        if (cities_list[i].name.toLocaleLowerCase() == city.toLocaleLowerCase() && cities_list[i].country.toLocaleLowerCase() == country_name.toLocaleLowerCase()) {
           cityfound = true;
           break;
         }
       }
       if(cityfound){
-        storecitysearchlist(city);
+        storecitysearchlist(countrycity);
         //reload the whole page
         location.reload();
         //This is getting called in Page Reload. getcitydetails(city);
@@ -393,9 +399,8 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#cityhistory").click(function (event) {
     event.preventDefault();
     //Get the city name from the search history button
-    var city = event.target.textContent;
-    console.log(city);
-    getcitydetails(city);
+    var countrycitylocal = event.target.textContent;
+    getcitydetails(countrycitylocal);
   });
 
 
