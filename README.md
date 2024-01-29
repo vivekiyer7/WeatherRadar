@@ -40,9 +40,9 @@ This Weather App allows users to search for weather details of cities, view the 
 
 ## Screenshots
 
-![Screenshot1](/assets/images/Finished_new_browser.png)
-![Screenshot1](/assets/images/Finished_Autosearch.png)
-![Screenshot2](/assets/images/Finished_after.png)
+![Screenshot1](/assets/images/finished_in_new_browser.png)
+![Screenshot1](/assets/images/finished_display_autosearch.png)
+![Screenshot2](/assets/images/finished_display_final.png)
 
 ## Deployment
 
