@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
               .join("/");
             futuredates.push(temp_date);
             futureicourl.push(
-              "http://openweathermap.org/img/w/" +
+              "https://openweathermap.org/img/w/" +
                 data.list[j].weather[0].icon +
                 ".png"
             );
