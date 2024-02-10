@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
       //append the city names to the cityname variable
       cityname.push(cities_list[j].name + ", " + cities_list[j].country);
     }
-    console.log(cityname);
     //Add the autocomplete feature to the search box
     $("#tags").autocomplete({
       source: cityname,
@@ -98,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //Convert the wind speed from meter/sec to KPH and round it to 2 decimal places
         var windspeed_KPH = (windspeed_meterpersec * 3.6).toFixed(2);
         var iconcode = data.weather[0].icon;
-        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
 
         //Invoke the function to display the weather details
         displayweatherdetails(
